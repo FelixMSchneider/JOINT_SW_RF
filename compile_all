@@ -1,0 +1,12 @@
+cd src
+compile
+cd ..
+
+
+cd Forward_Rf
+make
+cd ..
+
+cd Forward_Disp
+make
+cd ..

@@ -1,0 +1,8 @@
+INPUT_MODEL      \*     mname    (name of input model file)  
+0.058            \*     rayp     (ray parameter s/km 0.058s/km = 6.4s/°)   
+3.0              \*     svs      (surface velocity used for rotation in LQT system   
+10               \*     delay    (delay in seconds computed before p-onset)  
+0.1              \*     dt       (samling intervall)  
+5.0              \*     gaussalp (Low pass Gauss filter parameter (3/gaussalp = LP in T (sec))
+512              \*     n        (number of samples) the smallest N=2**m such that N >= n is computed internally
+30.0             \*     thp      (period of high pass butterworth filter applied on Q-RF, (no HP if set to 0))  

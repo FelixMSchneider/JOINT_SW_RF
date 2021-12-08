@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Building some CALPLOT libraries and commands needed"
+cd CALPLOT/src/cmd.unx ; make docp ; make all ; cd ../../..
+cd CALPLOT/src/flib.unx ; make docp ; make all ; cd ../../..
+
+echo "compile VOLIV_LQT" 
+cd VOLIV_LQT/src ; make all 
