@@ -1,18 +1,20 @@
-#!/bin/sh
+#!/bin/bash
+
+
+BIN=../bin/
+
+# make sure system calls during joint96 are using binaries from local BIN-folder: 
+# otherwise this can cause trouble, when another version of CPS (Hermann) is installed
+export PATH=$BIN:$PATH
 
 TAIL=`tail -1 rftn.lst`
 sta=`saclst kstnm f $TAIL|awk '{print $2}'`
 
-BIN=../bin/
-
 workdir=`pwd`
-Dispdir=Disp
-Rfdir=Rf
 
 #set vpvs of crust
 vpvs=1.8
 vp=`echo 4.48*$vpvs|bc -l`
-
 sed 's/X_VP_X/'$vp'/' Line.mod > start.mod
 
 
@@ -29,8 +31,8 @@ mkdir -p ${OResdir}
 #####
 #	clean up
 #####
-    $BIN/joint96 39
-    $BIN/joint96 36 1
+        $BIN/joint96 39
+        $BIN/joint96 36 1
 #####
 #	set the time window for the RFTN inversion
 #	to -5, 20  The 20 is later than the bounce
@@ -44,21 +46,19 @@ mkdir -p ${OResdir}
 #####
 #	Std error of fit floor for RFTN
 #####
-    $BIN/joint96 42 0.0005
+        $BIN/joint96 42 0.0005
 #####
 #	Std error of fit floor for velocity disp
 #####
-    $BIN/joint96 40 0.05
-
+        $BIN/joint96 40 0.05
 
 # give all filters the same weight
-$BIN/joint96 50 1 1
-$BIN/joint96 50 2 1
-$BIN/joint96 50 3 1
-$BIN/joint96 50 4 1
-$BIN/joint96 50 5 1
-
-
+        $BIN/joint96 50 1 1
+        $BIN/joint96 50 2 1
+        $BIN/joint96 50 3 1
+        $BIN/joint96 50 4 1
+        $BIN/joint96 50 5 1
+      
 
 
 #####
@@ -117,59 +117,61 @@ $BIN/joint96 50 5 1
 #####
 	$BIN/joint96 43 0.5
 	$BIN/joint96 32 0.1
-	$BIN/joint96 37 30 1 2 6
+	$BIN/joint96 37 10 1 2 6
 
 #####
 #	get the current model
 #####
-    $BIN/joint96 1 2 28 end.mod
-    cp end.mod $OVeldir/Ve.${sta}.end.mod
-
-    $BIN/joint96 1 2 27 dsp.dat
-    mv dsp.dat $ODispdir/Dp.${sta}.dat
-
-    $BIN/joint96 1 2 29 res.mod
-    mv res.mod $OResdir/Re.${sta}.mod
+        $BIN/joint96 1 2 28 end.mod
+        cp end.mod $OVeldir/Ve.${sta}.end.mod
+    
+        $BIN/joint96 1 2 27 dsp.dat
+        mv dsp.dat $ODispdir/Dp.${sta}.dat
+    
+        $BIN/joint96 1 2 29 res.mod
+        mv res.mod $OResdir/Re.${sta}.mod
 #####
 #	plot up the receiver functions
 #####
-    $BIN/rftnpv96
-    $BIN/plotnps -F7 -W10 -EPS -K < RFTNPV96.PLT > $ORfdir/RFTN.${sta}.ps
+
+        $BIN/rftnpv96
+        $BIN/plotnps -F7 -W10 -EPS -K < RFTNPV96.PLT > $ORfdir/RFTN.${sta}.ps
 	ps2raster $ORfdir/RFTN.${sta}.ps -Tj -A -P
 #####
 #	plot up the dispersion
 #####
-    $BIN/srfphv96
-    $BIN/plotnps -F7 -W10 -EPS -K < SRFPHV96.PLT > $ODispdir/Disp.${sta}.ps
+        $BIN/srfphv96
+        $BIN/plotnps -F7 -W10 -EPS -K < SRFPHV96.PLT > $ODispdir/Disp.${sta}.ps
 	ps2raster $ODispdir/Disp.${sta}.ps -Tj -A -P
 #####
 #	plot up the resolution kernel
 #####
-    $BIN/srfphr96
-    $BIN/plotnps -F7 -W10 -EPS -K < SRFPHR96.PLT > $OResdir/Resolution.${sta}.ps
-	ps2raster $-F7 -W10 -EPS -K < SRFPHR96.PLT-ZMAX 200 -K -1 -LEG Line.mod tmpmod96.??? end.modOResdir/Resolution.${sta}.ps -Tj -A -P
+        $BIN/srfphr96  2> /dev/null
+        $BIN/plotnps -F7 -W10 -EPS -K < SRFPHR96.PLT > $OResdir/Resolution.${sta}.ps
+	ps2raster $OResdir/Resolution.${sta}.ps -Tj -A -P 
 #####
 #	compare the individual models from the inversion
 #	to the end model
 #####
-    $BIN/shwmod96 -ZMAX 200 -K -1 -LEG Line.mod tmpmod96.??? end.mod
-    $BIN/plotnps -F7 -W10 -EPS -K < SHWMOD96.PLT > $OVeldir/Model.${sta}.ps
+        $BIN/shwmod96 -ZMAX 200 -K -1 -LEG start.mod tmpmod96.??? end.mod > /dev/null
+        $BIN/plotnps -F7 -W10 -EPS -K < SHWMOD96.PLT > $OVeldir/Model.${sta}.ps
 	ps2raster $OVeldir/Model.${sta}.ps -Tj -A -P
 
 
 #####
 #	output the parameters of inversion
 #####
-    $BIN/joint96 45 > Weighting.Parameters
-    $BIN/joint96 47 > Inversion.Controls
-    $BIN/joint96 49 > Rftn.Information
+        $BIN/joint96 45 > Weighting.Parameters
+        $BIN/joint96 47 > Inversion.Controls
+        $BIN/joint96 49 > Rftn.Information
 
 ####
 #	modeling rf
 ####
 
-    rm end.mod
-    rm *.tmp
-    rm tmp*
-    rm *PLT
+        rm start.mod
+        rm end.mod
+        rm *.tmp
+        rm tmp*
+        rm *PLT
  

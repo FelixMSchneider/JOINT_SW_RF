@@ -444,7 +444,7 @@ c-----
         parameter (NPTS=16384)
         real x(NPTS)
         integer n, nerr
-        real dt, rayp, gauss, delay, invwgt
+        real dt, rayp, gauss, thp, svs, delay, invwgt
         integer lf
         integer lgstr
 
@@ -490,12 +490,17 @@ c-----
         if(delay.ne. -12345.)then
             delay = - delay
         endif
+
+
+
         if(n.le.0 .or. dt.le.0.0 .or. gauss.le.0.0 .or. rayp.lt.0.0
      1      .or. delay.lt.0.0)then
             write(LER,*)'Problems with RFTN SAC FILE:',fname(1:lf)
             write(LER,*)'NPTS       :',n
             write(LER,*)'DT         :',dt
             write(LER,*)'Gauss USER0:',gauss
+            write(LER,*)'SVS   USER6:',svs
+            write(LER,*)'THP   USER5:',thp
             write(LER,*)'Rayp  USER4:',rayp
             write(LER,*)'Delay B    :',delay
         else
@@ -508,11 +513,11 @@ c-----
             else
                 invwgt = 1.0
             endif
-            write(3,'(i5,f10.3,f10.3,f10.3,f10.3,f10.3)')
-     1          n,dt,rayp,gauss,delay,invwgt
+            write(3,'(i5,f8.3,f8.3,f8.3,f8.3,f5.1,f8.3,f8.3)')
+     1          n,dt,rayp,gauss,thp,svs,delay,invwgt
             nurftn = nurftn + 1
         endif
-        
+
         go to 1000
  9000   continue
         close (3)
