@@ -2,15 +2,14 @@
 JOINT_RF_SW
 ===========
 
-This code is taken and modified from Computer programs in seismology (Rob Hermann) 
+This lightweight code is extracted and modified from Computer programs in seismology (Rob Hermann) 
 
 &nbsp;&nbsp;&nbsp; Herrmann, R. B. (2013):  
 &nbsp;&nbsp;&nbsp; *Computer programs in seismology: An evolving tool for instruction and research,*    
 &nbsp;&nbsp;&nbsp; Seism. Res. Lettr. 84, 1081-1088, doi:10.1785/0220110096
 
-
-I extracted the relevant programs (from VOLIV + shwmod96 from VOLV) for this purpose and added some small features.
-This slim Version does not need X11, but python and obspy should be installed in order to use the scripts for preparing data.
+I extracted only the relevant programs (from VOLIV + shwmod96 from VOLV) for this purpose and added some small features.
+This slim Version does not need X11, but Python and Obspy should be installed in order to use the scripts for preparing data.
 
 Features include:
 
