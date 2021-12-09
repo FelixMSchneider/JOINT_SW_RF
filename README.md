@@ -19,14 +19,12 @@ Features include:
 * Support for L-Q-T Receiver functions
 * Normalization of Q-Receiver function with height of L-spike
 * Add additional High-Pass Butterworth filter
-* simple forward routines (L-Q-T Receiver functions and Dispersion curves) are extracted from the code
+* Simple forward routines (L-Q-T Receiver functions and Dispersion curves) are extracted from the code and provided in separate folders
 
 The High-Pass Butterwoth filter is controled by USER5 header value of the input SAC Files. <br>
 For L-Q-T support a near surface Vs must be provided in USER6 header value of the input SAC Files.
 
-As in the Original Version of the code
-
-USER4 and B values of the SAC-header control the gauss-parameter and the delay (time before P-onset) of the Receiver function
+As in the Original Version of the code USER4 and B values of the SAC-header control the gauss-parameter and the delay (time before P-onset) of the Receiver function
 
 
 
