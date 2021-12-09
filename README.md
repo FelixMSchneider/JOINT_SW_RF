@@ -18,7 +18,7 @@ Features include:
 * Add additional High-Pass Butterworth filter
 * simple forward routines (L-Q-T Receiver functions and Dispersion curves) are extracted from the code
 
-The High-Pass Butterwoth filter is controled by USER5 header value of the input SAC Files.
+The High-Pass Butterwoth filter is controled by USER5 header value of the input SAC Files. <br>
 For L-Q-T support a near surface Vs must be provided in USER6 header value of the input SAC Files.
 
 as in the Original Version of the code
