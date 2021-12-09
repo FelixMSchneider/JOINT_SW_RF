@@ -8,9 +8,7 @@ This lightweight code is extracted and modified from Computer programs in seismo
 &nbsp;&nbsp;&nbsp; *Computer programs in seismology: An evolving tool for instruction and research,*    
 &nbsp;&nbsp;&nbsp; Seism. Res. Lettr. 84, 1081-1088, doi:10.1785/0220110096
 
-Documentation of the Original Package can be found here:
-<span style="color: blue;">                          
-[cps330c.pdf](http://www.eas.slu.edu/eqc/eqc_cps/CPS/CPS330/cps330c.pdf)
+Documentation of the Original Package can be found here:<span style="color: blue;">[cps330c.pdf](http://www.eas.slu.edu/eqc/eqc_cps/CPS/CPS330/cps330c.pdf)
 </span>
 
 I extracted only the relevant programs (from VOLIV + shwmod96 from VOLV) for this purpose and added some small features.
