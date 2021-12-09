@@ -4,9 +4,9 @@ JOINT_RF_SW
 
 This code is taken and modified from Computer programs in seismology (Rob Hermann) 
 
-nbsp Herrmann, R. B. (2013):  
-nbsp *Computer programs in seismology: An evolving tool for instruction and research,*    
-nbsp Seism. Res. Lettr. 84, 1081-1088, doi:10.1785/0220110096
+&nbsp Herrmann, R. B. (2013):  
+&nbsp *Computer programs in seismology: An evolving tool for instruction and research,*    
+&nbsp Seism. Res. Lettr. 84, 1081-1088, doi:10.1785/0220110096
 
 
 I extracted the relevant programs (from VOLIV + shwmod96 from VOLV) for this purpose and added some small features.
